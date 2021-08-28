@@ -1,20 +1,19 @@
 import React, { useState } from 'react'; 
 
-const Formulario = ({crearPersona}) => { 
+const Formulario = ({crearCita}) => { 
 
-    const [persona, guardarPersona] = useState({
+    const [cita, guardarCita] = useState({
         nombre:'',
         apellido: ''
     });
 
     const [error,guardarError] = useState(false);
 
-
-    const {nombre, apellido} = persona;
+    const {nombre, apellido} = cita;
 
     const OnChange = e => {
-        guardarPersona({
-            ...persona,
+        guardarCita({
+            ...cita,
             [e.target.name]: e.target.value
         });
     }
@@ -29,16 +28,22 @@ const Formulario = ({crearPersona}) => {
 
         guardarError(false);
 
+        crearCita(cita);
+
+        guardarCita({
+            nombre:'',
+            apellido: ''
+        })
+
     }
 
 
     return (
         <>
         <h1> Formulario </h1>
+        {error ? <p className="alert alert-danger mt-4"></p>:null}
         <form
-
          onSubmit = {onSubmit}
-
         > 
 
             <div className = "col-4">
@@ -67,7 +72,7 @@ const Formulario = ({crearPersona}) => {
                 <div className = "col-12">
                 <input 
                 type = "submit"
-                value = "guardar persona"
+                value = "guardar cita"
                 class = "btn btn-block-btn-secondary"
                 />
                 </div>

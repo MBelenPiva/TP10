@@ -7,12 +7,18 @@ import './App.css';
 
 function App() {
 
-  const [listadoPersonas, guardarListadoPersonas] = useState([])
+  const [ListadoCitas, guardarListadoCitas] = useState([])
 
-  const crearPersona = (persona) => {
-    guardarListadoPersonas([
-      ...listadoPersonas,
-      persona
+  const crearCita = (cita) => {
+    guardarListadoCitas([
+      ...listadoCitas,
+      cita
+    ]);
+  }
+
+  const eliminarCita = (nombre) => {
+    guardarListadoCitas([
+      listadoCitas.filter(cita => cita.nombre!==nombre)
     ]);
   }
 
@@ -27,10 +33,15 @@ function App() {
      <div className = "row">
          <div className = "col-6">
         <Formulario
-        crearPersona = {crearPersona}
-        guardarListadoPersonas = {guardarListadoPersonas}
+        crearCita = {crearCita}
         />
-         </div>
+        </div>
+        <div className = "col-6">
+        <ListadoCitas
+        listadoCitas = {listadoCitas}
+        eliminarCita
+        />
+        </div>
     </div>
   </div>
  </Fragment>
