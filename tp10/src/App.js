@@ -1,24 +1,40 @@
 import logo from './logo.svg';
+import Formulario from './componentes/Formulario';
+import Cita from './componentes/Cita';
+import Error from '.componentes/Error';
+import ListadoCitas from './componentes/ListadoCitas';
 import './App.css';
 
 function App() {
+
+  const [listadoPersonas, guardarListadoPersonas] = useState([])
+
+  const crearPersona = (persona) => {
+    guardarListadoPersonas([
+      ...listadoPersonas,
+      persona
+    ]);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Fragment> 
+      <div className = "container">
+      <div className = "row">
+         <div className = "col-12 text-center">
+        <Header title = "Trabajo tp10" subtitulo = "parrafo" /> 
+        </div>
+     </div>
+     <div className = "row">
+         <div className = "col-6">
+        <Formulario
+        crearPersona = {crearPersona}
+        guardarListadoPersonas = {guardarListadoPersonas}
+        />
+         </div>
     </div>
+  </div>
+ </Fragment>
+    
   );
 }
 
